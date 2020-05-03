@@ -12,3 +12,15 @@ Session(app)
 # Items for sale
 ITEMS = ["foo", "bar", "baz"]
 
+def index(): 
+    return render_template("index.html")
+
+@app.route("/update", methhods=["POST"])
+def update():
+    for item in request.form:
+        session[item] = int(request.form.get(item))
+    return redirect("/cart")
+
+@app.route("/cart")
+def cart():
+    reeturn render_template("cart.html", cart=session)
