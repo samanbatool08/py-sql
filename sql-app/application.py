@@ -23,4 +23,6 @@ def update():
 
 @app.route("/cart")
 def cart():
-    reeturn render_template("cart.html", cart=session)
+    return render_template("cart.html", cart=session)
+
+ 
