@@ -9,5 +9,7 @@ db  = SQL("sqlite:///froshims.db")
 @app.route("/")
 def index():
     q = request.args.get("q")
-    rows = db.execute(f"SELECT * FROM registrants WHERE name = {q}")
+    # can cause SQL injection attack
+    # rows = db.execute(f"SELECT * FROM registrants WHERE name = '{q}' ")
+    rows = db.execute(f"SELECT * FROM registrants WHERE name = :name", name='{q}')
     return render_template("index.html", rows=rows)
