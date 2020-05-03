@@ -11,5 +11,5 @@ def index():
     q = request.args.get("q")
     # can cause SQL injection attack
     # rows = db.execute(f"SELECT * FROM registrants WHERE name = '{q}' ")
-    rows = db.execute(f"SELECT * FROM registrants WHERE name = :name", name='{q}')
+    rows = db.execute("SELECT * FROM registrants WHERE name = :name", name='{q}')
     return render_template("index.html", rows=rows)
